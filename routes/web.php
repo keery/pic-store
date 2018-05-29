@@ -16,3 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('/read', 'WallController@read');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
