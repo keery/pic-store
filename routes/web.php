@@ -10,12 +10,11 @@ Route::get('/pic/{id}', function ($id) {
     return view('welcome', ['id' => $id]);
 });
 
-<<<<<<< HEAD
 Route::get('/read', 'WallController@read');
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-=======
+Route::get('/', 'HomeController@index')->name('home');
+
 //Delete pic
 Route::get('/delete/pic/{id}', function ($id) {
     return view('welcome', ['id' => $id]);
@@ -25,5 +24,5 @@ Route::get('/delete/pic/{id}', function ($id) {
 //     return view('welcome');
 // });
 
-Route::get('/add/pic', 'HomeController@addImage');
->>>>>>> Create page form pic
+Route::get('/form/pic', 'HomeController@formImage');
+Route::post('/add/pic', 'HomeController@addImage');

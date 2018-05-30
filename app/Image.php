@@ -9,5 +9,9 @@ class Image extends Model
     use \Conner\Tagging\Taggable;
 
     protected $table = "image";
+
+    public $fillable = [
+        'titre', 'description', 'src'
+    ];
     
 }
