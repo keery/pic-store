@@ -27,12 +27,27 @@
                     {!! Form::file('image') !!}
                 </div>
             </div>
-            
-            <div class="form-group text-right">
-                {!! Form::submit('Enregistrer', [
-                    'class' => 'btn btn-primary'
-                ]) !!}
+
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label>Ajouter des tags à votre image</label>
+                    <input type="text" class="tags form-control" name="tags" />
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group text-right">
+                    {!! Form::submit('Enregistrer', [
+                        'class' => 'btn btn-primary'
+                    ]) !!}
+                </div>
             </div>
         </div>
     {!! Form::close() !!}
 @stop
+
+<script>
+    var tags = [
+        {tag : 'truc'}
+    ]
+</script>
+<script type="text/javascript" src="{!! asset('js/app.js') !!}"></script>
