@@ -10875,3 +10875,27 @@ body {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.navbar > .container,
+.navbar > .container-fluid {
+  -webkit-box-pack: normal;
+      -ms-flex-pack: normal;
+          justify-content: normal;
+}
+
+.navbar-nav {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.navbar-brand {
+  font-size: 17px;
+  padding-top: 11px;
+}
+
+.thumbnail > img {
+  height: 280px;
+  width: auto;
+}
+

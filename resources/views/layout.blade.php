@@ -15,6 +15,18 @@
     </head>
     <body>
         <div class="container">
+            <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="/">Pic Store</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li {{{ (Request::is('formpic') ? 'class=active' : '') }}}>
+                        <a href="/form/pic">Ajouter une image</a>
+                    </li>
+                </ul>
+            </div>
+            </nav>
 			@yield('contenu')
 		</div>        
     </body>

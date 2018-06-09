@@ -8,7 +8,7 @@ Route::get('/', function () {
 //Detail pic
 Route::get('/pic/{id}', function ($id) {
     return view('welcome', ['id' => $id]);
-});
+})->name('picdetail');
 
 Route::get('/read', 'WallController@read');
 // Auth::routes();
@@ -24,5 +24,5 @@ Route::get('/delete/pic/{id}', function ($id) {
 //     return view('welcome');
 // });
 
-Route::get('/form/pic', 'HomeController@formImage');
+Route::get('/form/pic', 'HomeController@formImage')->name("formpic");
 Route::post('/add/pic', 'HomeController@addImage');

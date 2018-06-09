@@ -12,6 +12,10 @@ class HomeController extends Controller
     {
         // $this->middleware('auth');
     }
+    public function index() {
+        $imgs = Image::orderBy('id', 'DESC')->get();
+        return view('home', compact('imgs'));
+    }
 
     public function formImage() {
         $tags = Tag::all('name');
@@ -25,7 +29,7 @@ class HomeController extends Controller
 
         $file = $request->file('image');
         $src = uniqid().'.'.$file->getClientOriginalExtension();
-        $file->move(resource_path('assets/upload'), $src);
+        $file->move(public_path('upload'), $src);
         $val = [
             'titre' => $request->titre,
             'description' => $request->description,

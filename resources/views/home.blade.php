@@ -1,23 +1,18 @@
-@extends('layouts.app')
+@extends('layout')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
+@section('contenu')
+    <div class="row">
+    @foreach ($imgs as $img)
+        <div class="col-xs-6 col-md-4">
+            <div class="thumbnail">
+                <img src="{{URL::asset('upload/'.$img->src)}}">
+                <div class="caption">
+                    <h3>{{ $img->titre }}</h3>
+                    <p>{{str_limit($img->description, 40) }}</p>
+                    <p class="text-right"><a href="{{ route('picdetail', $img->id) }}" class="btn btn-primary" role="button">Voir le détail</a></p>
                 </div>
             </div>
         </div>
+    @endforeach
     </div>
-</div>
-@endsection
+@stop
