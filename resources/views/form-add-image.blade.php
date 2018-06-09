@@ -3,9 +3,17 @@
 @section('contenu')
     {!! Form::open(array('url' => 'add/pic', 'files'=>'true')) !!}
         <div class="row">
-        {{-- @foreach ($tags as $tag)
-               {{ $tag->name }}
-        @endforeach --}}
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+
             <div class="col-xs-12">
                 <div class="form-group">
                     {!! Form::label('titre', 'Titre:') !!}

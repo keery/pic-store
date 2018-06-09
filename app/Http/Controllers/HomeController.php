@@ -18,6 +18,10 @@ class HomeController extends Controller
         return view('form-add-image', compact('tags'));
     }
     public function addImage(Request $request) {
+        $request->validate([
+            'titre' => 'required|max:255',
+            'image' => 'required',
+        ]);
 
         $file = $request->file('image');
         $src = uniqid().'.'.$file->getClientOriginalExtension();
