@@ -13,5 +13,10 @@ class Image extends Model
     public $fillable = [
         'titre', 'description', 'src'
     ];
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag', 'image_tag');
+    }
     
 }

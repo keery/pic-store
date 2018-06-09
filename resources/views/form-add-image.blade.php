@@ -3,6 +3,9 @@
 @section('contenu')
     {!! Form::open(array('url' => 'add/pic', 'files'=>'true')) !!}
         <div class="row">
+        {{-- @foreach ($tags as $tag)
+               {{ $tag->name }}
+        @endforeach --}}
             <div class="col-xs-12">
                 <div class="form-group">
                     {!! Form::label('titre', 'Titre:') !!}
@@ -47,7 +50,9 @@
 
 <script>
     var tags = [
-        {tag : 'truc'}
-    ]
+        @foreach ($tags as $tag)
+        {tag: "{{$tag->name}}" },
+        @endforeach
+    ];
 </script>
 <script type="text/javascript" src="{!! asset('js/app.js') !!}"></script>
