@@ -12,9 +12,32 @@ class HomeController extends Controller
     {
         // $this->middleware('auth');
     }
-    public function index() {
-        $imgs = Image::orderBy('id', 'DESC')->paginate(12);
-        return view('home', compact('imgs'));
+    public function index(Request $request) {
+
+        //Lors de la validation du formulaire de critères
+        if($request->isMethod('post')) {
+            $imgs = Image::orderBy('id', 'DESC');
+
+            //Si le champ titre n'est pas vide je cherche un tutre qui contient la valeur
+            if(isset($request->titre) && !empty($request->titre)) $imgs->where('titre', 'like', '%' . $request->titre . '%');
+            
+            //Je cherche les images qui contiennent les tags sélectionnés
+            if(isset($request->tags) && !empty($request->tags)) {
+                $tags = $request->tags;
+                $imgs->whereHas('tags', function ($query) use ($tags) {
+                    $query->whereIn('name', $tags);
+                });
+            }
+
+            $imgs = $imgs->paginate(12);
+        }
+        //Sinon je récupères toutes les images
+        else $imgs = Image::orderBy('id', 'DESC')->paginate(12);
+
+        //Je récupère les tags pour les critères
+        $tags = Tag::all()->sortBy("name");
+
+        return view('home', ['imgs' => $imgs, 'tags' => $tags]);
     }
 
     public function detailImage(Request $request) {
@@ -22,9 +45,7 @@ class HomeController extends Controller
         if($data['img'] = Image::find($request->id)) 
         {
             $tags = [];
-            foreach ($data['img']->tags()->get() as $tag) {
-                $tags[] = $tag->name;
-            }
+            foreach ($data['img']->tags()->get() as $tag) $tags[] = $tag->name;
 
             if(count($tags) > 0) {
                 $data['tags'] = $tags;

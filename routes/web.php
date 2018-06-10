@@ -1,9 +1,9 @@
 <?php
 
 //Home page
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 //Detail pic
 Route::get('/pic/{id}', 'HomeController@detailImage')->name('picdetail');
@@ -11,7 +11,7 @@ Route::get('/pic/{id}', 'HomeController@detailImage')->name('picdetail');
 Route::get('/read', 'WallController@read');
 // Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::match(['get', 'post'], '/', 'HomeController@index')->name('home');
 
 //Delete pic
 Route::get('/delete/pic/{id}', function ($id) {
