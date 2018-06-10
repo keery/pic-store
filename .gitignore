@@ -13,3 +13,4 @@ yarn-error.log
 .env
 /phpmyadmin
 /ressources/assets/upload/
+/public/upload/

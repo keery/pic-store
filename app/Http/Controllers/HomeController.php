@@ -17,10 +17,34 @@ class HomeController extends Controller
         return view('home', compact('imgs'));
     }
 
+    public function detailImage(Request $request) {
+        $data = [];
+        if($data['img'] = Image::find($request->id)) 
+        {
+            $tags = [];
+            foreach ($data['img']->tags()->get() as $tag) {
+                $tags[] = $tag->name;
+            }
+            
+            if(count($tags) > 0) {
+                $data['tags'] = $tags;
+                $data['similars'] = Image::where('id', '!=', $request->id)->whereHas('tags', function ($query) use ($tags) {
+                    $query->whereIn('name', $tags);
+                })
+                ->limit(4)
+                ->get();
+            }
+            
+            return view('detail-image', $data);
+        }
+        return redirect()->route('home');
+    }
+
     public function formImage() {
         $tags = Tag::all('name');
         return view('form-add-image', compact('tags'));
     }
+
     public function addImage(Request $request) {
         $request->validate([
             'titre' => 'required|max:255',

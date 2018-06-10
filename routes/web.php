@@ -6,9 +6,7 @@ Route::get('/', function () {
 });
 
 //Detail pic
-Route::get('/pic/{id}', function ($id) {
-    return view('welcome', ['id' => $id]);
-})->name('picdetail');
+Route::get('/pic/{id}', 'HomeController@detailImage')->name('picdetail');
 
 Route::get('/read', 'WallController@read');
 // Auth::routes();
