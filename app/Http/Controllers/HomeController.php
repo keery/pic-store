@@ -13,7 +13,7 @@ class HomeController extends Controller
         // $this->middleware('auth');
     }
     public function index() {
-        $imgs = Image::orderBy('id', 'DESC')->get();
+        $imgs = Image::orderBy('id', 'DESC')->paginate(12);
         return view('home', compact('imgs'));
     }
 
@@ -25,7 +25,7 @@ class HomeController extends Controller
             foreach ($data['img']->tags()->get() as $tag) {
                 $tags[] = $tag->name;
             }
-            
+
             if(count($tags) > 0) {
                 $data['tags'] = $tags;
                 $data['similars'] = Image::where('id', '!=', $request->id)->whereHas('tags', function ($query) use ($tags) {
