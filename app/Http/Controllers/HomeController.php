@@ -103,6 +103,8 @@ class HomeController extends Controller
             $img->tags()->sync($idsTags);
         }
 
+
+
         return back()->with('success', "Ajout de l'image réussi");
     }
     public function destroy($id)
