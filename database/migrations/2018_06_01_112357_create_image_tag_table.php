@@ -12,12 +12,12 @@ class CreateImageTagTable extends Migration {
 			$table->integer('image_id')->unsigned();
 			$table->integer('tag_id')->unsigned();
 			$table->foreign('image_id')->references('id')->on('image')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 
 			$table->foreign('tag_id')->references('id')->on('tagging_tags')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 	}
 

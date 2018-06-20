@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Image;
 use App\Tag;
+use Session;
+
+
 
 class HomeController extends Controller
 {
@@ -101,5 +104,18 @@ class HomeController extends Controller
         }
 
         return back()->with('success', "Ajout de l'image réussi");
+    }
+    public function destroy($id)
+    {
+
+
+        $image = Image::findOrFail($id);
+
+        $image->delete();
+
+
+        Session::flash('flash_message', "Image supprimée");
+
+        return redirect()->route('home');
     }
 }

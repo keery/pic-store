@@ -14,9 +14,7 @@ Route::get('/read', 'WallController@read');
 Route::match(['get', 'post'], '/', 'HomeController@index')->name('home');
 
 //Delete pic
-Route::get('/delete/pic/{id}', function ($id) {
-    return view('welcome', ['id' => $id]);
-});
+Route::post('/delete/pic/{id}', 'HomeController@destroy')->name('deletepic');
 
 // Route::get('/add/pic/', function () {
 //     return view('welcome');
