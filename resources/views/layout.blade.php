@@ -20,11 +20,36 @@
                 <div class="navbar-header">
                   <a class="navbar-brand" href="/">Pic Store</a>
                 </div>
-                <ul class="nav navbar-nav">
-                    <li {{{ (Request::is('formpic') ? 'class=active' : '') }}}>
-                        <a href="/form/pic">Ajouter une image</a>
-                    </li>
-                </ul>
+                    <ul class="nav navbar-nav">
+                     
+                        @guest
+                            <li style="margin-right: 15px;"><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                        @else
+                            <li {{{ (Request::is('formpic') ? 'class="active"' : '') }}}>
+                                <a href="/form/pic">Ajouter une image</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+                            </li>
+                            <li>
+
+                                <div class="nav-link" aria-labelledby="navbarDropdown" style="margin-top: 5px;">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
             </div>
             </nav>
 			@yield('contenu')

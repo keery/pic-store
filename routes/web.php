@@ -20,5 +20,12 @@ Route::post('/delete/pic/{id}', 'HomeController@destroy')->name('deletepic');
 //     return view('welcome');
 // });
 
-Route::get('/form/pic', 'HomeController@formImage')->name("formpic");
-Route::post('/add/pic', 'HomeController@addImage');
+Route::get('/form/pic', 'ImageController@formImage')->name("formpic");
+Route::post('/add/pic', 'ImageController@addImage');
+Route::post('/my-pics', 'HomeController@index')->middleware('auth');
+Route::get('/my-pics', ['middleware' => 'auth', function () {
+    return redirect()->route('home');
+}]);
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
