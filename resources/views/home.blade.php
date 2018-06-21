@@ -37,13 +37,11 @@
                                 <div class="caption">
                                     <h3>{{ $img->titre }}</h3>
                                     <p>{{str_limit($img->description, 40) }}</p>
-                                    <div class="row">
-                                        <p class="text-right"><a href="{{ route('picdetail', $img->id) }}" class="btn btn-primary" role="button">Voir le détail</a></p>
-                                        {{ Form::open(array('url' => 'delete/pic/' . $img->id, 'class' => 'pull-right')) }}
-                                        {{ Form::hidden('_method', 'POST') }}
-                                        {{ Form::submit('Supprimer', array('class' => 'btn btn-primary')) }}
-                                        {{ Form::close() }}
-                                    </div>
+                                    <p class="text-right"><a href="{{ route('picdetail', $img->id) }}" class="btn btn-primary" role="button">Voir le détail</a></p>
+                                    {{ Form::open(array('url' => 'delete/pic/' . $img->id, 'class' => 'pull-right')) }}
+                                    {{ Form::hidden('_method', 'POST') }}
+                                    {{ Form::submit('Supprimer cette image', array('class' => 'btn btn-primary')) }}
+                                    {{ Form::close() }}
                                 </div>
                             </div>
                         </div>
