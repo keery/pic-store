@@ -69,4 +69,14 @@ class ImageController extends Controller
 
         return view('home', ['imgs' => $imgs]);
     }
+
+    public function destroy($id)
+    {
+        if($image = Image::where('id', $id)->where('user_id', Auth::user()->id)->first())  {
+            $image->delete();
+            return back()->with('success', "Image supprimée");
+        }
+        return back()->with('error', "Suppression interdite");
+    }
+    
 }

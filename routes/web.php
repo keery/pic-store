@@ -8,8 +8,6 @@ Route::get('/pic/{id}', 'HomeController@detailImage')->name('picdetail');
 Route::get('/read', 'WallController@read');
 // Auth::routes();
 Route::match(['get', 'post'], '/', 'HomeController@index')->name('home');
-//Delete pic
-Route::post('/delete/pic/{id}', 'HomeController@destroy')->name('deletepic');
 // Route::get('/add/pic/', function () {
 //     return view('welcome');
 // });
@@ -20,5 +18,6 @@ Route::get('/my-pics', 'ImageController@myPics')->name('my-pics');
 // Route::get('/my-pics', ['middleware' => 'auth', function () {
 //     return redirect()->route('home');
 // }])->name('my-pics');
+Route::get('/delete/pic/{id}', 'ImageController@destroy')->name('deletepic');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

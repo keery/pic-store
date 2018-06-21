@@ -11,10 +11,7 @@ use Session;
 
 class HomeController extends Controller
 {
-    public function __construct()
-    {
-        // $this->middleware('auth');
-    }
+
     public function index(Request $request) {
 
         //Lors de la validation du formulaire de critères
@@ -61,20 +58,6 @@ class HomeController extends Controller
             
             return view('detail-image', $data);
         }
-        return redirect()->route('home');
-    }
-
-    public function destroy($id)
-    {
-
-
-        $image = Image::findOrFail($id);
-
-        $image->delete();
-
-
-        Session::flash('flash_message', "Image supprimée");
-
         return redirect()->route('home');
     }
 }

@@ -29,7 +29,7 @@
                             <a href="/form/pic">Ajouter une image</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('my-pics') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a class="nav-link" href="{{ route('my-pics') }}" role="button">
                                 {{ Auth::user()->name }}
                             </a>
                         </li>

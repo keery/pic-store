@@ -2,6 +2,18 @@
 
 @section('contenu')
     <div class="row">
+        <div class="col-xs-12">
+            @if(session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
+            @if(session()->has('error'))
+                <div class="alert alert-warning">
+                    {{ session()->get('error') }}
+                </div>
+            @endif
+        </div>
         @if($col = Request::route()->getName() !== 'my-pics')
             <div class="col-xs-3">
                 <div class="criteria-bar thumbnail">
@@ -29,8 +41,9 @@
                 </div>
             </div>
         @endif
+
         @if (isset($imgs) && count($imgs) > 0)
-            <div class="{{!$col ? 'col-xs-12' : 'col-xs-9' }}">
+            <div class="{{ !$col ? 'col-xs-12' : 'col-xs-9' }}">
                 <div class="row">
                     @foreach ($imgs as $img)
                         <div class="col-xs-6 col-md-4">
@@ -41,11 +54,8 @@
                                     <p>{{str_limit($img->description, 40) }}</p>
                                     <div class='row'>
                                         <div class="col-xs-6">   
-                                            @if (Auth::check() && $img->user_id === Auth::user()->id)  
-                                                {{ Form::open(array('url' => 'delete/pic/' . $img->id, 'class' => 'pull-right')) }}
-                                                {{ Form::hidden('_method', 'POST') }}
-                                                {{ Form::submit('Supprimer', array('class' => 'btn btn-primary')) }}
-                                                {{ Form::close() }}
+                                            @if (Auth::check() && $img->user_id === Auth::user()->id) 
+                                                <a href='{{ route('deletepic', ['id' => $img->id]) }}' class="btn btn-danger">Supprimer</a> 
                                             @endif
                                         </div>
                                         <div class="col-xs-6">
@@ -60,7 +70,7 @@
                 </div>
             </div>
         @else
-            <div class="col-xs-9">        
+            <div class="{{ !$col ? 'col-xs-12' : 'col-xs-9' }}">        
                 <div class="alert alert-warning">Aucun résultat</div>
             </div>
         @endif
