@@ -72,10 +72,14 @@ class ImageController extends Controller
 
     public function destroy($id)
     {
-        if($image = Image::where('id', $id)->where('user_id', Auth::user()->id)->first())  {
+        if(Auth::user()->role === "admin") $image = Image::where('id', $id)->first();
+        else $image = Image::where('id', $id)->where('user_id', Auth::user()->id)->first();
+
+        if($image)  {
             $image->delete();
             return back()->with('success', "Image supprimée");
         }
+
         return back()->with('error', "Suppression interdite");
     }
     
