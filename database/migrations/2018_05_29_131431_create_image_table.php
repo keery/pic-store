@@ -15,10 +15,12 @@ class CreateImageTable extends Migration
     {
         Schema::create('image', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
             $table->string('titre');
             $table->text('description');
             $table->string('src');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -18,5 +18,8 @@ class Image extends Model
     {
         return $this->belongsToMany('App\Tag', 'image_tag');
     }
-    
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }    
 }
