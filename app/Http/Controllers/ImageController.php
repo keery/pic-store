@@ -72,7 +72,7 @@ class ImageController extends Controller
 
     public function destroy($id)
     {
-        if(Auth::user()->role === "admin") $image = Image::where('id', $id)->first();
+        if(Auth::user()->admin === 1) $image = Image::where('id', $id)->first();
         else $image = Image::where('id', $id)->where('user_id', Auth::user()->id)->first();
 
         if($image)  {

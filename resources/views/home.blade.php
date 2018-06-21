@@ -54,7 +54,7 @@
                                     <p>{{str_limit($img->description, 40) }}</p>
                                     <div class='row'>
                                         <div class="col-xs-6">   
-                                            @if (Auth::check() && $img->user_id === Auth::user()->id) 
+                                            @if (Auth::check() && $img->user_id === Auth::user()->id || Auth::check() && Auth::user()->admin === 1)
                                                 <a href='{{ route('deletepic', ['id' => $img->id]) }}' class="btn btn-danger">Supprimer</a> 
                                             @endif
                                         </div>
